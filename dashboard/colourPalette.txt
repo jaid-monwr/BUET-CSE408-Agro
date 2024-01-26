@@ -1,0 +1,4 @@
+cream - #FAF1E6
+white - #FDFAF6
+pastel green - #E4EFE7
+dark green - #064420
