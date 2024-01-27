@@ -1,35 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaEye } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import Pagination from "../Pagination";
+import Search from "../components/Search";
 
-const DeactiveSellers = () => {
+const DiscountProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [perPage, setPerPage] = useState(5);
-  const [show, setShow] = useState(false);
 
   return (
-    <div className="px-2 lg:px-7 pt-5 ">
+    <div className="px-2 md:px-7 py-5">
       <div className="w-full p-4 bg-[#ededed] rounded-md border border-slate-100">
-        <div className="flex justify-between items-center">
-          <select
-            onChange={(e) => setPerPage(parseInt(e.target.value))}
-            className="px-4 py-2 focus:border-slate-800 outline-none bg-[#ededed] border border-slate-500 rounded-md text-[#3c3840]"
-          >
-            <option value="5">5</option>
-            <option value="5">15</option>
-            <option value="5">25</option>
-          </select>
-          <input
-            className="px-4 py-2 focus:border-slate-800 outline-none bg-[#ededed] border border-slate-500 rounded-md text-[#3c3840]"
-            type="text"
-            placeholder="search"
-          />
-        </div>
-        <div className="relative overflow-x-auto">
+        <Search
+          setPerPage={setPerPage}
+          setSearchValue={setSearchValue}
+          searchValue={searchValue}
+        />
+        <div className="relative overflow-x-auto mt-5">
           <table className="w-full text-sm text-left text-green-950">
-            <thead className="text-xs text-green-950 uppercase border-b border-slate-700">
+            <thead className="text-sm text-green-950 uppercase border-b border-slate-700">
               <tr>
                 <th scope="col" className="py-3 px-4">
                   No
@@ -41,20 +31,26 @@ const DeactiveSellers = () => {
                   Name
                 </th>
                 <th scope="col" className="py-3 px-4">
-                  Email
+                  Category
                 </th>
                 <th scope="col" className="py-3 px-4">
-                  Payment Status
+                  Brand
                 </th>
                 <th scope="col" className="py-3 px-4">
-                  Status
+                  Price
+                </th>
+                <th scope="col" className="py-3 px-4">
+                  Discount
+                </th>
+                <th scope="col" className="py-3 px-4">
+                  Stock
                 </th>
                 <th scope="col" className="py-3 px-4">
                   Action
                 </th>
               </tr>
             </thead>
-            <tbody className="text-sm font-normal">
+            <tbody>
               {[1, 2, 3, 4, 5].map((d, i) => (
                 <tr key={i}>
                   <td
@@ -75,36 +71,55 @@ const DeactiveSellers = () => {
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-normal whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>Sheikh Farid</span>
+                    <span>Onions</span>
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-normal whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>farid@gmail.com</span>
+                    <span>Vegetables</span>
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-normal whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>active</span>
+                    <span>Rashid</span>
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-normal whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>deactive</span>
+                    <span>Tk 500</span>
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-normal whitespace-nowrap"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
+                  >
+                    <span>5%</span>
+                  </td>
+                  <td
+                    scope="row"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
+                  >
+                    <span>50</span>
+                  </td>
+
+                  <td
+                    scope="row"
+                    className="py-1 px-4 font-medium whitespace-nowrap"
                   >
                     <div className="flex justify-start items-center gap-4">
                       <Link className="text-[#ededed] p-[6px] bg-[#4e5447] rounded-sm hover:shadow-lg hover:shadow-green-950/50">
+                        <FaEdit />
+                      </Link>
+                      <Link className="text-[#3c3840] p-[6px] bg-[#dbdfaa] rounded-sm hover:shadow-lg hover:shadow-green-950/50">
                         <FaEye />
                       </Link>
+                      <button className="p-[6px] text-[#ededed] bg-red-500 rounded-sm hover:shadow-lg hover:shadow-red-500/50">
+                        <FaTrash />
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -126,4 +141,4 @@ const DeactiveSellers = () => {
   );
 };
 
-export default DeactiveSellers;
+export default DiscountProducts;
