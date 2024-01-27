@@ -8,8 +8,8 @@ const Search = ({ setPerPage, setSearchValue, searchValue }) => {
         className="px-4 py-2 focus:border-slate-800 outline-none bg-[#ededed] border border-slate-500 rounded-md text-[#3c3840]"
       >
         <option value="5">5</option>
-        <option value="5">15</option>
-        <option value="5">25</option>
+        <option value="15">15</option>
+        <option value="25">25</option>
       </select>
       <input
         onChange={(e) => setSearchValue(e.target.value)}

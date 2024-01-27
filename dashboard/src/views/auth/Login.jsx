@@ -1,10 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineGooglePlus, AiOutlineGithub } from "react-icons/ai";
 import { FiFacebook } from "react-icons/fi";
 import { CiTwitter } from "react-icons/ci";
+import { PropagateLoader } from "react-spinners";
+import toast from "react-hot-toast";
+import { overrideStyle } from "../../utils/utils";
+import { messageClear, seller_login } from "../../store/Reducers/authReducer";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loader, errorMessage, successMessage } = useSelector(
+    (state) => state.auth
+  );
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -19,8 +29,20 @@ const Login = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(state);
+    dispatch(seller_login(state));
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+      navigate("/");
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [successMessage, errorMessage]);
 
   return (
     <div className="min-w-screen min-h-screen bg-white flex justify-center items-center">
@@ -56,8 +78,15 @@ const Login = () => {
               />
             </div>
 
-            <button className="bg-[#4e5447] w-full hover:shadow-gray-800/50 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3">
-              Sign In
+            <button
+              disabled={loader ? true : false}
+              className="bg-[#4e5447] w-full hover:shadow-slate-950/50 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3"
+            >
+              {loader ? (
+                <PropagateLoader color="#ededed" cssOverride={overrideStyle} />
+              ) : (
+                "Sign in"
+              )}
             </button>
             <div className="flex items-center mb-3 gap-3 justify-center">
               <p>
