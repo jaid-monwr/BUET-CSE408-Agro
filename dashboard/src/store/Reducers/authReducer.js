@@ -68,7 +68,7 @@ export const profile_info_add = createAsyncThunk(
   "auth/profile_info_add",
   async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.post("/profile-info-upload", info, {
+      const { data } = await api.post("/profile-info-add", info, {
         withCredentials: true,
       });
 
