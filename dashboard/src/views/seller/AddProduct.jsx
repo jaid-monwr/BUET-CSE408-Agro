@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { BsImages } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { get_category } from "../../store/Reducers/categoryReducer";
-import { add_product } from "../../store/Reducers/productReducer";
+import { add_product, messageClear } from "../../store/Reducers/productReducer";
+import { overrideStyle } from "../../utils/utils";
+import { PropagateLoader } from "react-spinners";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
+  const { successMessage, errorMessage, loader } = useSelector(
+    (state) => state.product
+  );
 
   useEffect(() => {
     dispatch(
@@ -103,11 +109,37 @@ const AddProduct = () => {
     formData.append("description", state.description);
     formData.append("price", state.price);
     formData.append("stock", state.stock);
+    formData.append("category", state.category);
     formData.append("discount", state.discount);
+    formData.append("shopName", "Farid Onions");
     formData.append("brand", state.brand);
-    formData.append("images", images);
+    for (let i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
     dispatch(add_product(formData));
   };
+
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+      setState({
+        name: "",
+        description: "",
+        discount: "",
+        price: "",
+        brand: "",
+        stock: "",
+      });
+      setImageShow([]);
+      setImages([]);
+      setCategory("");
+    }
+  }, [successMessage, errorMessage]);
 
   return (
     <div className="px-2 lg:px-7 pt-5 ">
@@ -228,6 +260,7 @@ const AddProduct = () => {
               <div className="flex flex-col w-full gap-1">
                 <label htmlFor="discount">Discount</label>
                 <input
+                  min="0"
                   className="px-4 py-2 focus:border-slate-800 outline-none bg-[#ededed] border border-slate-500 rounded-md text-[#3c3840]"
                   onChange={inputHandle}
                   value={state.discount}
@@ -292,8 +325,18 @@ const AddProduct = () => {
               />
             </div>
             <div className="flex">
-              <button className="text-[#ededed] bg-[#4e5447] hover:shadow-green-950/50 hover:shadow-lg hover:text-white rounded-md px-7 py-2 my-2 ">
-                Add Product
+              <button
+                disabled={loader ? true : false}
+                className="bg-[#4e5447] w-[190px] hover:shadow-slate-950/50 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3"
+              >
+                {loader ? (
+                  <PropagateLoader
+                    color="#ededed"
+                    cssOverride={overrideStyle}
+                  />
+                ) : (
+                  "Add Product"
+                )}
               </button>
             </div>
           </form>

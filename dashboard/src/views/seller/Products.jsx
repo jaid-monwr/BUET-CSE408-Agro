@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import Pagination from "../Pagination";
 import { BsImage } from "react-icons/bs";
 import Search from "../components/Search";
+import { useDispatch, useSelector } from "react-redux";
+import { get_products } from "../../store/Reducers/productReducer";
 
 const Products = () => {
+  const dispatch = useDispatch();
+  const { products, totalProduct } = useSelector((state) => state.product);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [perPage, setPerPage] = useState(5);
+
+  useEffect(() => {
+    const obj = {
+      perPage: parseInt(perPage),
+      page: parseInt(currentPage),
+      searchValue,
+    };
+    dispatch(get_products(obj));
+  }, [searchValue, currentPage, perPage]);
 
   return (
     <div className="px-2 md:px-7 py-5">
@@ -53,13 +67,13 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5].map((d, i) => (
+              {products.map((d, i) => (
                 <tr key={i}>
                   <td
                     scope="row"
                     className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    {d}
+                    {i + 1}
                   </td>
                   <td
                     scope="row"
@@ -67,7 +81,7 @@ const Products = () => {
                   >
                     <img
                       className="w-[45px] h-[45px]"
-                      src={`http://localhost:3000/images/category/${d}.jpg`}
+                      src={d.images[0]}
                       alt=""
                     />
                   </td>
@@ -75,37 +89,41 @@ const Products = () => {
                     scope="row"
                     className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>Onions</span>
+                    <span>{d?.name?.slice(0, 16)}...</span>
                   </td>
                   <td
                     scope="row"
                     className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>Vegetables</span>
+                    <span>{d.category}</span>
                   </td>
                   <td
                     scope="row"
                     className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>Rashid</span>
+                    <span>{d.brand}</span>
                   </td>
                   <td
                     scope="row"
                     className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>Tk 500</span>
+                    <span>Tk {d.price}</span>
                   </td>
                   <td
                     scope="row"
                     className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>5%</span>
+                    {d.discount === 0 ? (
+                      <span>no discount</span>
+                    ) : (
+                      <span>{d.discount} %</span>
+                    )}
                   </td>
                   <td
                     scope="row"
                     className="py-1 px-4 font-medium whitespace-nowrap"
                   >
-                    <span>50</span>
+                    <span>{d.stock}</span>
                   </td>
 
                   <td
@@ -114,7 +132,7 @@ const Products = () => {
                   >
                     <div className="flex justify-start items-center gap-4">
                       <Link
-                        to={`/seller/dashboard/edit-product/123`}
+                        to={`/seller/dashboard/edit-product/${d._id}`}
                         className="text-[#ededed] p-[6px] bg-[#4e5447] rounded-sm hover:shadow-lg hover:shadow-green-950/50"
                       >
                         <FaEdit />
@@ -132,15 +150,19 @@ const Products = () => {
             </tbody>
           </table>
         </div>
-        <div className="w-full flex justify-end mt-4 bottom-4 right-4">
-          <Pagination
-            pageNumber={currentPage}
-            setPageNumber={setCurrentPage}
-            totalItem={3}
-            perPage={perPage}
-            showItem={4}
-          />
-        </div>
+        {totalProduct <= perPage ? (
+          ""
+        ) : (
+          <div className="w-full flex justify-end mt-4 bottom-4 right-4">
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={3}
+              perPage={perPage}
+              showItem={4}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
