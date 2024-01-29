@@ -40,9 +40,9 @@ const Header = () => {
 
   return (
     <div className="w-full bg-white">
-      <div className="header-top bg-[#eeeeee] md-lg:hidden">
+      <div className="header-top bg-orange-100 md-lg:hidden">
         <div className="w-[85%] lg:w-[90%] mx-auto">
-          <div className="flex w-full justify-between items-center h-[50px] text-slate-500">
+          <div className="flex w-full justify-between items-center h-[50px] text-slate-800">
             <ul className="flex justify-start items-center gap-8">
               <li className="flex relative justify-center items-center gap-2 text-sm after:absolute after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px]">
                 <span>
@@ -348,7 +348,7 @@ const Header = () => {
             <div className="bg-white relative">
               <div
                 onClick={() => setCategoryShow(!categoryShow)}
-                className="h-[50px] bg-violet-400 text-white flex justify-center md-lg:justify-between md-lg:px-6 items-center gap-3 font-bold text-md cursor-pointer"
+                className="h-[50px] bg-violet-700 text-white flex justify-center md-lg:justify-between md-lg:px-6 items-center gap-3 font-bold text-md cursor-pointer"
               >
                 <div className="flex justify-center items-center gap-3">
                   <span>
@@ -405,7 +405,7 @@ const Header = () => {
                     id=""
                     placeholder="what do you need?"
                   />
-                  <button className="bg-violet-400 right-0 absolute px-8 h-full font-semibold uppercase text-white">
+                  <button className="bg-violet-700 right-0 absolute px-8 h-full font-semibold uppercase text-white">
                     Search
                   </button>
                 </div>
