@@ -91,10 +91,12 @@ class homeController {
   query_products = async (req, res) => {
     const perPage = 12;
     req.query.perPage = perPage;
+    // console.log(req.query);
     try {
       const products = await productModel.find({}).sort({ createdAt: -1 });
       const totalProduct = new queryProducts(products, req.query)
         .categoryQuery()
+        .searchQuery()
         .priceQuery()
         .ratingQuery()
         .sortByPrice()
@@ -102,6 +104,7 @@ class homeController {
 
       const result = new queryProducts(products, req.query)
         .categoryQuery()
+        .searchQuery()
         .ratingQuery()
         .priceQuery()
         .sortByPrice()
@@ -109,7 +112,7 @@ class homeController {
         .limit()
         .getProducts();
 
-      responseReturn(res, 200, { products: result, totalProduct });
+      responseReturn(res, 200, { products: result, totalProduct, perPage });
     } catch (error) {
       console.log(error.message);
     }

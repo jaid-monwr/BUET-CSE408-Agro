@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GrMail } from "react-icons/gr";
 import { IoIosCall } from "react-icons/io";
 import {
@@ -19,6 +19,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const Header = () => {
+  const navigate = useNavigate();
   const { categories } = useSelector((state) => state.home);
 
   const { pathname } = useLocation();
@@ -29,6 +30,10 @@ const Header = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [category, setCategory] = useState("");
+
+  const search = () => {
+    navigate(`/products/search?category=${category}&&value=${searchValue}`);
+  };
 
   console.log(pathname);
 
@@ -397,7 +402,9 @@ const Header = () => {
                     >
                       <option value="">Select Category</option>
                       {categories.map((c, i) => (
-                        <option value={c}>{c.name}</option>
+                        <option key={i} value={c.name}>
+                          {c.name}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -409,7 +416,10 @@ const Header = () => {
                     id=""
                     placeholder="what do you need?"
                   />
-                  <button className="bg-violet-700 right-0 absolute px-8 h-full font-semibold uppercase text-white">
+                  <button
+                    onClick={search}
+                    className="bg-violet-700 right-0 absolute px-8 h-full font-semibold uppercase text-white"
+                  >
                     Search
                   </button>
                 </div>
