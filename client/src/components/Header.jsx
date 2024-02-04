@@ -16,22 +16,16 @@ import {
   AiFillShopping,
 } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { categories } = useSelector((state) => state.home);
+
   const { pathname } = useLocation();
   const [showSidebar, setShowSidebar] = useState(true);
   const [categoryShow, setCategoryShow] = useState(true);
   const user = true;
   const wishlist = 4;
-  const categories = [
-    "Rice",
-    "Onions",
-    "Sugar",
-    "Wheat",
-    "Potatoes",
-    "Tomatoes",
-    "Eggs",
-  ];
 
   const [searchValue, setSearchValue] = useState("");
   const [category, setCategory] = useState("");
@@ -365,14 +359,24 @@ const Header = () => {
                   categoryShow ? "h-0" : "h-[400px]"
                 } overflow-hidden transition-all md-lg:relative duration-500 absolute z-[99999] bg-white w-full border-x`}
               >
-                <ul className="py-2 text-slate-600 font-medium">
+                <ul className="py-2 text-slate-600 font-medium h-full overflow-auto">
                   {categories.map((c, i) => {
                     return (
                       <li
                         key={i}
                         className="flex justify-start items-center gap-2 px-[24px] py-[6px]"
                       >
-                        <Link className="text-sm block">{c}</Link>
+                        <img
+                          src={c.image}
+                          className="w-[30px] h-[30px] rounded-full overflow-hidden"
+                          alt={c.name}
+                        />
+                        <Link
+                          to={`/products?category=${c.name}`}
+                          className="text-sm block"
+                        >
+                          {c.name}
+                        </Link>
                       </li>
                     );
                   })}
@@ -393,7 +397,7 @@ const Header = () => {
                     >
                       <option value="">Select Category</option>
                       {categories.map((c, i) => (
-                        <option value={c}>{c}</option>
+                        <option value={c}>{c.name}</option>
                       ))}
                     </select>
                   </div>
