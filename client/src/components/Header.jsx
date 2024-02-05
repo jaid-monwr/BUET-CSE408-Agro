@@ -21,11 +21,12 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const navigate = useNavigate();
   const { categories } = useSelector((state) => state.home);
+  const { userInfo } = useSelector((state) => state.auth);
 
   const { pathname } = useLocation();
   const [showSidebar, setShowSidebar] = useState(true);
   const [categoryShow, setCategoryShow] = useState(true);
-  const user = true;
+  const user = false;
   const wishlist = 4;
 
   const [searchValue, setSearchValue] = useState("");
@@ -77,7 +78,7 @@ const Header = () => {
                     <li>English</li>
                   </ul>
                 </div>
-                {user ? (
+                {userInfo ? (
                   <Link
                     className="flex cursor-pointer justify-center items-center gap-2 text-sm"
                     to="/dashboard"
@@ -85,15 +86,18 @@ const Header = () => {
                     <span>
                       <FaUser />
                     </span>
-                    <span>Sheikh Farid</span>
+                    <span>{userInfo.name}</span>
                   </Link>
                 ) : (
-                  <div className="flex cursor-pointer justify-center items-center gap-2 text-sm">
+                  <Link
+                    to="/login"
+                    className="flex cursor-pointer justify-center items-center gap-2 text-sm"
+                  >
                     <span>
                       <FaLock />
                     </span>
                     <span>Login</span>
-                  </div>
+                  </Link>
                 )}
               </div>
             </div>
