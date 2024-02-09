@@ -6,7 +6,9 @@ import { useLocation } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const Shipping = () => {
-  //   const { state } = useLocation();
+  const {
+    state: { products },
+  } = useLocation();
   const [res, setRes] = useState(false);
   const [state, setState] = useState({
     name: "",
@@ -29,6 +31,8 @@ const Shipping = () => {
       setRes(true);
     }
   };
+
+  console.log(products);
 
   return (
     <div>

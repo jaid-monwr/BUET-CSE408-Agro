@@ -22,6 +22,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { categories } = useSelector((state) => state.home);
   const { userInfo } = useSelector((state) => state.auth);
+  const { cart_product_count } = useSelector((state) => state.cart);
 
   const { pathname } = useLocation();
   const [showSidebar, setShowSidebar] = useState(true);
@@ -34,6 +35,14 @@ const Header = () => {
 
   const search = () => {
     navigate(`/products/search?category=${category}&&value=${searchValue}`);
+  };
+
+  const redirect_cart_page = () => {
+    if (userInfo) {
+      navigate(`/cart`);
+    } else {
+      navigate(`/login`);
+    }
   };
 
   console.log(pathname);
@@ -189,16 +198,21 @@ const Header = () => {
                       <span className="text-xl text-red-500">
                         <AiFillHeart />
                       </span>
-                      <div className="w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
+                      <div className="text-[12px] w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
                         {wishlist}
                       </div>
                     </div>
-                    <div className="relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]">
+                    <div
+                      onClick={redirect_cart_page}
+                      className="relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]"
+                    >
                       <span className="text-xl text-orange-500">
                         <AiFillShopping />
-                        <div className="w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
-                          {wishlist}
-                        </div>
+                        {cart_product_count !== 0 && (
+                          <div className="w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px] text-[12px]">
+                            {cart_product_count}
+                          </div>
+                        )}
                       </span>
                     </div>
                   </div>

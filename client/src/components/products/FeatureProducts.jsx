@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Ratings from "../Ratings";
+import toast from "react-hot-toast";
+import { add_to_cart, messageClear } from "../../store/reducers/cartReducer";
 
 const FeatureProducts = ({ products }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
+  const { successMessage, errorMessage } = useSelector((state) => state.cart);
+
+  const add_cart = (id) => {
+    if (userInfo) {
+      dispatch(
+        add_to_cart({
+          userId: userInfo.id,
+          quantity: 1,
+          productId: id,
+        })
+      );
+    } else {
+      navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [errorMessage, successMessage]);
+
   return (
     <div className="w-[85%] flex flex-wrap mx-auto">
       <div className="w-full ">
@@ -15,7 +48,10 @@ const FeatureProducts = ({ products }) => {
       </div>
       <div className="w-full grid grid-cols-4 md-lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
         {products.map((p, i) => (
-          <div className="border group transition-all duration-500 hover:shadow-md hover:-mt-3">
+          <div
+            key={i}
+            className="border group transition-all duration-500 hover:shadow-md hover:-mt-3"
+          >
             <div className="relative overflow-hidden">
               {p.discount ? (
                 <div className="flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2">
@@ -39,7 +75,10 @@ const FeatureProducts = ({ products }) => {
                 >
                   <FaEye />
                 </Link>
-                <li className="w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#7fad39] hover:text-white hover:rotate-[720deg] transition-all">
+                <li
+                  onClick={() => add_cart(p._id)}
+                  className="w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#7fad39] hover:text-white hover:rotate-[720deg] transition-all"
+                >
                   <AiOutlineShoppingCart />
                 </li>
               </ul>
