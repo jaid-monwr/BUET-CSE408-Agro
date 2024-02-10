@@ -242,9 +242,9 @@ const Details = () => {
                 <div className="grid grid-cols-2">
                   <button
                     onClick={() => setState("reviews")}
-                    className={`py-1 px-5 hover:text-white hover:bg-green-500 ${
+                    className={`py-1 px-5 hover:text-white hover:bg-violet-700 ${
                       state === "reviews"
-                        ? "bg-green-500 text-white"
+                        ? "bg-violet-700 text-white"
                         : "bg-slate-200 text-slate-700"
                     } rounded-sm`}
                   >
@@ -252,9 +252,9 @@ const Details = () => {
                   </button>
                   <button
                     onClick={() => setState("description")}
-                    className={`py-1 px-5 hover:text-white hover:bg-green-500 ${
+                    className={`py-1 px-5 hover:text-white hover:bg-violet-700 ${
                       state === "description"
-                        ? "bg-green-500 text-white"
+                        ? "bg-violet-700 text-white"
                         : "bg-slate-200 text-slate-700"
                     } rounded-sm`}
                   >

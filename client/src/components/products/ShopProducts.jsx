@@ -4,7 +4,7 @@ import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Ratings from "../Ratings";
 
-const ShopProducts = ({ styles }) => {
+const ShopProducts = ({ styles, products }) => {
   return (
     <div
       className={`w-full grid ${
@@ -13,8 +13,9 @@ const ShopProducts = ({ styles }) => {
           : "grid-cols-1 md-lg:grid-cols-2 md:grid-cols-2"
       } gap-3`}
     >
-      {[1, 2, 3, 4, 5, 6].map((p, i) => (
+      {products.map((p, i) => (
         <div
+          key={i}
           className={`flex transition-all duration-1000 hover:shadow-md hover:-translate-y-3 ${
             styles === "grid"
               ? "flex-col justify-start items-start"
@@ -30,7 +31,7 @@ const ShopProducts = ({ styles }) => {
           >
             <img
               className="h-[240px] rounded-md md:h-[270px] xs:h-[170px] w-full object-cover"
-              src={`http://localhost:3000/images/product/${i + 1}.png`}
+              src={p.images[0]}
               alt="image"
             />
             <ul className="flex transition-all  duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3">
@@ -49,13 +50,13 @@ const ShopProducts = ({ styles }) => {
             </ul>
           </div>
           <div className="flex justify-start items-start flex-col gap-1">
-            <h2 className="text-md text-slate-700 font-medium">
-              Fresh Carrots
-            </h2>
+            <h2 className="text-md text-slate-700 font-medium">{p.name}</h2>
             <div className="flex justify-start items-center gap-2">
-              <span className="text-md font-bold text-slate-700">Tk 100</span>
+              <span className="text-md font-bold text-slate-700">
+                Tk {p.price}
+              </span>
               <div className="flex text-lg">
-                <Ratings ratings={4.5} />
+                <Ratings ratings={p.rating} />
               </div>
             </div>
           </div>

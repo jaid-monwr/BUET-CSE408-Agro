@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Range } from "react-range";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { BsFillGridFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
@@ -17,20 +17,16 @@ import {
   query_products,
 } from "../store/reducers/homeReducer";
 
-const Shops = () => {
-  const {
-    products,
-    totalProduct,
-    latest_product,
-    categories,
-    priceRange,
-    perPage,
-  } = useSelector((state) => state.home);
+const CategoryShops = () => {
+  let [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get("category");
+
+  const { products, totalProduct, latest_product, priceRange, perPage } =
+    useSelector((state) => state.home);
   const dispatch = useDispatch();
   const [pageNumber, setPageNumber] = useState(1);
   const [styles, setStyles] = useState("grid");
   const [filter, setFilter] = useState(true);
-  const [category, setCategory] = useState("");
   const [rating, setRatingQ] = useState("");
   const [sortPrice, setSortPrice] = useState("");
 
@@ -48,19 +44,11 @@ const Shops = () => {
     });
   }, [priceRange]);
 
-  const queryCategory = (e, value) => {
-    if (e.target.checked) {
-      setCategory(value);
-    } else {
-      setCategory("");
-    }
-  };
-
   useEffect(() => {
     dispatch(
       query_products({
-        low: state.values[0],
-        high: state.values[1],
+        low: state.values[0] || "",
+        high: state.values[1] || "",
         category,
         rating,
         sortPrice,
@@ -127,30 +115,6 @@ const Shops = () => {
                   : "md:h-auto md:overflow-auto md:mb-0"
               }`}
             >
-              <h2 className="text-3xl font-bold mb-3 text-slate-600">
-                Category
-              </h2>
-              <div className="py-2 ">
-                {categories.map((c, i) => (
-                  <div
-                    className="flex justify-start items-center gap-2 py-1"
-                    key={i}
-                  >
-                    <input
-                      checked={category === c.name ? true : false}
-                      onChange={(e) => queryCategory(e, c.name)}
-                      type="checkbox"
-                      id={c.name}
-                    />
-                    <label
-                      className="text-slate-600 block cursor-pointer"
-                      htmlFor={c.name}
-                    >
-                      {c.name}
-                    </label>
-                  </div>
-                ))}
-              </div>
               <div className="py-2 flex flex-col gap-5">
                 <h2 className="text-3xl font-bold mb-3 text-slate-600">
                   Price
@@ -376,4 +340,4 @@ const Shops = () => {
   );
 };
 
-export default Shops;
+export default CategoryShops;

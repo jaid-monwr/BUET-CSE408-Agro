@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GrMail } from "react-icons/gr";
 import { IoIosCall } from "react-icons/io";
 import {
@@ -16,25 +16,34 @@ import {
   AiFillShopping,
 } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { categories } = useSelector((state) => state.home);
+  const { userInfo } = useSelector((state) => state.auth);
+  const { cart_product_count } = useSelector((state) => state.cart);
+
   const { pathname } = useLocation();
   const [showSidebar, setShowSidebar] = useState(true);
   const [categoryShow, setCategoryShow] = useState(true);
-  const user = true;
+  const user = false;
   const wishlist = 4;
-  const categories = [
-    "Rice",
-    "Onions",
-    "Sugar",
-    "Wheat",
-    "Potatoes",
-    "Tomatoes",
-    "Eggs",
-  ];
 
   const [searchValue, setSearchValue] = useState("");
   const [category, setCategory] = useState("");
+
+  const search = () => {
+    navigate(`/products/search?category=${category}&&value=${searchValue}`);
+  };
+
+  const redirect_cart_page = () => {
+    if (userInfo) {
+      navigate(`/cart`);
+    } else {
+      navigate(`/login`);
+    }
+  };
 
   console.log(pathname);
 
@@ -78,7 +87,7 @@ const Header = () => {
                     <li>English</li>
                   </ul>
                 </div>
-                {user ? (
+                {userInfo ? (
                   <Link
                     className="flex cursor-pointer justify-center items-center gap-2 text-sm"
                     to="/dashboard"
@@ -86,15 +95,18 @@ const Header = () => {
                     <span>
                       <FaUser />
                     </span>
-                    <span>Sheikh Farid</span>
+                    <span>{userInfo.name}</span>
                   </Link>
                 ) : (
-                  <div className="flex cursor-pointer justify-center items-center gap-2 text-sm">
+                  <Link
+                    to="/login"
+                    className="flex cursor-pointer justify-center items-center gap-2 text-sm"
+                  >
                     <span>
                       <FaLock />
                     </span>
                     <span>Login</span>
-                  </div>
+                  </Link>
                 )}
               </div>
             </div>
@@ -186,16 +198,21 @@ const Header = () => {
                       <span className="text-xl text-red-500">
                         <AiFillHeart />
                       </span>
-                      <div className="w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
+                      <div className="text-[12px] w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
                         {wishlist}
                       </div>
                     </div>
-                    <div className="relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]">
+                    <div
+                      onClick={redirect_cart_page}
+                      className="relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]"
+                    >
                       <span className="text-xl text-orange-500">
                         <AiFillShopping />
-                        <div className="w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
-                          {wishlist}
-                        </div>
+                        {cart_product_count !== 0 && (
+                          <div className="w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px] text-[12px]">
+                            {cart_product_count}
+                          </div>
+                        )}
                       </span>
                     </div>
                   </div>
@@ -365,14 +382,24 @@ const Header = () => {
                   categoryShow ? "h-0" : "h-[400px]"
                 } overflow-hidden transition-all md-lg:relative duration-500 absolute z-[99999] bg-white w-full border-x`}
               >
-                <ul className="py-2 text-slate-600 font-medium">
+                <ul className="py-2 text-slate-600 font-medium h-full overflow-auto">
                   {categories.map((c, i) => {
                     return (
                       <li
                         key={i}
                         className="flex justify-start items-center gap-2 px-[24px] py-[6px]"
                       >
-                        <Link className="text-sm block">{c}</Link>
+                        <img
+                          src={c.image}
+                          className="w-[30px] h-[30px] rounded-full overflow-hidden"
+                          alt={c.name}
+                        />
+                        <Link
+                          to={`/products?category=${c.name}`}
+                          className="text-sm block"
+                        >
+                          {c.name}
+                        </Link>
                       </li>
                     );
                   })}
@@ -393,7 +420,9 @@ const Header = () => {
                     >
                       <option value="">Select Category</option>
                       {categories.map((c, i) => (
-                        <option value={c}>{c}</option>
+                        <option key={i} value={c.name}>
+                          {c.name}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -405,7 +434,10 @@ const Header = () => {
                     id=""
                     placeholder="what do you need?"
                   />
-                  <button className="bg-violet-700 right-0 absolute px-8 h-full font-semibold uppercase text-white">
+                  <button
+                    onClick={search}
+                    className="bg-violet-700 right-0 absolute px-8 h-full font-semibold uppercase text-white"
+                  >
                     Search
                   </button>
                 </div>
