@@ -158,7 +158,7 @@ const Header = () => {
                       Shop
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link
                       className={`p-2 block ${
                         pathname === "/blog"
@@ -168,7 +168,7 @@ const Header = () => {
                     >
                       Blog
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link
                       className={`p-2 block ${
@@ -290,7 +290,7 @@ const Header = () => {
                   Shop
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   className={`py-2 block ${
                     pathname === "/blog" ? "text-[#75ad39]" : "text-slate-600"
@@ -298,7 +298,7 @@ const Header = () => {
                 >
                   Blog
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   className={`py-2 block ${
@@ -344,7 +344,7 @@ const Header = () => {
                 <h2 className="text-sm font-medium text-slate-700">
                   +8801781737438
                 </h2>
-                <span className="text-xs">support 33/45 time</span>
+                <span className="text-xs">support 24/7 time</span>
               </div>
             </div>
             <ul className="flex flex-col justify-start items-start gap-3 text-[#1c1c1c]">
@@ -453,7 +453,7 @@ const Header = () => {
                     <h2 className="text-md font-medium text-slate-700">
                       +8801781737438
                     </h2>
-                    <span className="text-sm">support 33/45 time</span>
+                    <span className="text-sm">support 24/7 time</span>
                   </div>
                 </div>
               </div>

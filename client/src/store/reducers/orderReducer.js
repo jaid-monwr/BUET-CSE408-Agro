@@ -38,6 +38,32 @@ export const place_order = createAsyncThunk(
   }
 );
 
+export const get_orders = createAsyncThunk(
+  "order/get_orders",
+  async ({ customerId, status }, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.get(
+        `/home/customer/get-orders/${customerId}/${status}`
+      );
+      return fulfillWithValue(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+);
+
+export const get_order = createAsyncThunk(
+  "order/get_order",
+  async (orderId, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.get(`/home/customer/get-order/${orderId}`);
+      return fulfillWithValue(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+);
+
 export const orderReducer = createSlice({
   name: "order",
   initialState: {
@@ -52,7 +78,14 @@ export const orderReducer = createSlice({
       state.successMessage = "";
     },
   },
-  extraReducers: {},
+  extraReducers: {
+    [get_orders.fulfilled]: (state, { payload }) => {
+      state.myOrders = payload.orders;
+    },
+    [get_order.fulfilled]: (state, { payload }) => {
+      state.myOrder = payload.order;
+    },
+  },
 });
 
 export const { messageClear } = orderReducer.actions;
