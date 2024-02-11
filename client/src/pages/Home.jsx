@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Header />
       <Banner />
       <div className="my-4">

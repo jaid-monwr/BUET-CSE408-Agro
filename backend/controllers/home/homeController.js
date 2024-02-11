@@ -64,6 +64,48 @@ class homeController {
     }
   };
 
+  get_product = async (req, res) => {
+    const { slug } = req.params;
+    try {
+      const product = await productModel.findOne({ slug });
+      const relatedProducts = await productModel
+        .find({
+          $and: [
+            {
+              _id: {
+                $ne: product._id,
+              },
+            },
+            {
+              category: {
+                $eq: product.category,
+              },
+            },
+          ],
+        })
+        .limit(20);
+      const moreProducts = await productModel
+        .find({
+          $and: [
+            {
+              _id: {
+                $ne: product._id,
+              },
+            },
+            {
+              sellerId: {
+                $eq: product.sellerId,
+              },
+            },
+          ],
+        })
+        .limit(3);
+      responseReturn(res, 200, { product, relatedProducts, moreProducts });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   price_range_product = async (req, res) => {
     try {
       const priceRange = {
@@ -91,10 +133,12 @@ class homeController {
   query_products = async (req, res) => {
     const perPage = 12;
     req.query.perPage = perPage;
+    // console.log(req.query);
     try {
       const products = await productModel.find({}).sort({ createdAt: -1 });
       const totalProduct = new queryProducts(products, req.query)
         .categoryQuery()
+        .searchQuery()
         .priceQuery()
         .ratingQuery()
         .sortByPrice()
@@ -102,6 +146,7 @@ class homeController {
 
       const result = new queryProducts(products, req.query)
         .categoryQuery()
+        .searchQuery()
         .ratingQuery()
         .priceQuery()
         .sortByPrice()
@@ -109,7 +154,7 @@ class homeController {
         .limit()
         .getProducts();
 
-      responseReturn(res, 200, { products: result, totalProduct });
+      responseReturn(res, 200, { products: result, totalProduct, perPage });
     } catch (error) {
       console.log(error.message);
     }

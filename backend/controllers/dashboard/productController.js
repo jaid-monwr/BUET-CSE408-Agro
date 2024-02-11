@@ -57,7 +57,7 @@ class productController {
 
         responseReturn(res, 201, { message: "product added successfully" });
       } catch (error) {
-        responseReturn(req, 500, { error: error.message });
+        responseReturn(res, 500, { error: error.message });
       }
     });
   };

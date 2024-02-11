@@ -109,7 +109,7 @@ const AddProduct = () => {
     formData.append("description", state.description);
     formData.append("price", state.price);
     formData.append("stock", state.stock);
-    formData.append("category", state.category);
+    formData.append("category", category);
     formData.append("discount", state.discount);
     formData.append("shopName", "Farid Onions");
     formData.append("brand", state.brand);

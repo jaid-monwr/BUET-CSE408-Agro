@@ -10,6 +10,15 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { get_category } from "./store/reducers/homeReducer";
 import CategoryShops from "./pages/CategoryShops";
+import SearchProduct from "./pages/SearchProduct";
+import Payment from "./pages/Payment";
+import Dashboard from "./pages/Dashboard";
+import ProtectUser from "./utils/ProtectUser";
+import Index from "./components/dashboard/Index";
+import Orders from "./components/dashboard/Orders";
+import Wishlist from "./components/dashboard/Wishlist";
+import Order from "./components/dashboard/Order";
+import ChangePassword from "./components/dashboard/ChangePassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,9 +34,21 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/shops" element={<Shops />} />
         <Route path="/products?" element={<CategoryShops />} />
+        <Route path="/products/search?" element={<SearchProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shipping" element={<Shipping />} />
+        <Route path="/payment" element={<Payment />} />
         <Route path="/product/details/:slug" element={<Details />} />
+
+        <Route path="/dashboard" element={<ProtectUser />}>
+          <Route path="" element={<Dashboard />}>
+            <Route path="" element={<Index />} />
+            <Route path="my-orders" element={<Orders />} />
+            <Route path="my-wishlist" element={<Wishlist />} />
+            <Route path="order/details/:orderId" element={<Order />} />
+            <Route path="change-password" element={<ChangePassword />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
