@@ -258,7 +258,7 @@ const Shipping = () => {
                 <div className="bg-white font-medium p-5 text-slate-600 flex flex-col gap-3">
                   <h2 className="text-xl font-semibold">Order Summary</h2>
                   <div className="flex justify-between items-center">
-                    <span>Total Items({price})</span>
+                    <span>Total Items({items})</span>
                     <span>Tk {price}</span>
                   </div>
                   <div className="flex justify-between items-center">

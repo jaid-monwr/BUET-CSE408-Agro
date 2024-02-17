@@ -7,8 +7,7 @@ import FeatureProducts from "../components/products/FeatureProducts";
 import Products from "../components/products/Products";
 import Footer from "../components/Footer";
 import { get_category, get_products } from "../store/reducers/homeReducer";
-// fetch product and specify route 
-//! Here
+
 const Home = () => {
   const dispatch = useDispatch();
   const { products, latest_product, topRated_product, discount_product } =
@@ -18,7 +17,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Header />
       <Banner />
       <div className="my-4">
