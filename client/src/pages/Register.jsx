@@ -76,7 +76,6 @@ const Register = () => {
                       required
                     />
                   </div>
-
                   <div className="flex flex-col gap-1 mb-2">
                     <label htmlFor="email">Email</label>
                     <input
@@ -90,13 +89,6 @@ const Register = () => {
                       required
                     />
                   </div>
-                  {/* 
-        for email and password fixing up the input field 
-        
-      */}
-
-
-
                   <div className="flex flex-col gap-1 mb-4">
                     <label htmlFor="password">Password</label>
                     <input

@@ -108,9 +108,9 @@ const Payment = () => {
             <div className="w-5/12 md:w-full">
               <div className="pl-2 md:pl-0 md:mb-0">
                 <div className="bg-white shadow p-5 text-slate-600 flex flex-col gap-3">
-                  <h2>Order Summary</h2>
+                  <h2 className="font-medium">Order Summary</h2>
                   <div className="flex justify-between items-center gap-2">
-                    <span>Total items and shipping fee included</span>
+                    <span>Total {items} item(s) and shipping fee included</span>
                     <span> {price}</span>
                   </div>
                   <div className="flex justify-between items-center gap-2 font-semibold">

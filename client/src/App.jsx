@@ -17,6 +17,7 @@ import ProtectUser from "./utils/ProtectUser";
 import Index from "./components/dashboard/Index";
 import Orders from "./components/dashboard/Orders";
 import Wishlist from "./components/dashboard/Wishlist";
+import Order from "./components/dashboard/Order";
 import ChangePassword from "./components/dashboard/ChangePassword";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path="" element={<Index />} />
             <Route path="my-orders" element={<Orders />} />
             <Route path="my-wishlist" element={<Wishlist />} />
+            <Route path="order/details/:orderId" element={<Order />} />
             <Route path="change-password" element={<ChangePassword />} />
           </Route>
         </Route>
