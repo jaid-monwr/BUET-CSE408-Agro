@@ -4,7 +4,11 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { socket } from "../utils/utils";
 import { useSelector, useDispatch } from "react-redux";
-import { updateCustomer } from "../store/Reducers/chatReducer";
+import {
+  updateCustomer,
+  updateSellers,
+  activeAdmin_update,
+} from "../store/Reducers/chatReducer";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -22,6 +26,12 @@ const MainLayout = () => {
   useEffect(() => {
     socket.on("activeCustomer", (customers) => {
       dispatch(updateCustomer(customers));
+    });
+    socket.on("activeSeller", (sellers) => {
+      dispatch(updateSellers(sellers));
+    });
+    socket.on("activeAdmin", (data) => {
+      dispatch(activeAdmin_update(data));
     });
   }, []);
 
