@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GrMail } from "react-icons/gr";
 import { IoIosCall } from "react-icons/io";
@@ -16,19 +16,26 @@ import {
   AiFillShopping,
 } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  get_cart_products,
+  get_wishlist_products,
+} from "../store/reducers/cartReducer";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { categories } = useSelector((state) => state.home);
   const { userInfo } = useSelector((state) => state.auth);
-  const { cart_product_count } = useSelector((state) => state.cart);
+  const { cart_product_count, wishlist_count } = useSelector(
+    (state) => state.cart
+  );
 
   const { pathname } = useLocation();
   const [showSidebar, setShowSidebar] = useState(true);
   const [categoryShow, setCategoryShow] = useState(true);
-  const user = false;
-  const wishlist = 4;
+  // const user = false;
+  // const wishlist = 4;
 
   const [searchValue, setSearchValue] = useState("");
   const [category, setCategory] = useState("");
@@ -45,7 +52,14 @@ const Header = () => {
     }
   };
 
-  console.log(pathname);
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(get_cart_products(userInfo.id));
+      dispatch(get_wishlist_products(userInfo.id));
+    }
+  }, [userInfo]);
+
+  // console.log(pathname);
 
   return (
     <div className="w-full bg-white">
@@ -57,7 +71,7 @@ const Header = () => {
                 <span>
                   <GrMail />
                 </span>
-                <span>farid@gmail.com</span>
+                <span>{userInfo.email}</span>
               </li>
               <span>Agro Ecommerce</span>
             </ul>
@@ -194,13 +208,20 @@ const Header = () => {
                 </ul>
                 <div className="flex md-lg:hidden justify-center items-center gap-5">
                   <div className="flex justify-center gap-5">
-                    <div className="relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]">
+                    <div
+                      onClick={() =>
+                        navigate(userInfo ? "/dashboard/my-wishlist" : "/login")
+                      }
+                      className="relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]"
+                    >
                       <span className="text-xl text-red-500">
                         <AiFillHeart />
                       </span>
-                      <div className="text-[12px] w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
-                        {wishlist}
-                      </div>
+                      {wishlist_count !== 0 && (
+                        <div className="text-[12px] w-[20px] h-[20px] absolute bg-green-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]">
+                          {wishlist_count}
+                        </div>
+                      )}
                     </div>
                     <div
                       onClick={redirect_cart_page}
@@ -252,7 +273,7 @@ const Header = () => {
                   <li>English</li>
                 </ul>
               </div>
-              {user ? (
+              {userInfo ? (
                 <Link
                   className="flex cursor-pointer justify-center items-center gap-2 text-sm"
                   to="/dashboard"
@@ -260,7 +281,7 @@ const Header = () => {
                   <span>
                     <FaUser />
                   </span>
-                  <span>Sheikh Farid</span>
+                  <span>{userInfo.name}</span>
                 </Link>
               ) : (
                 <div className="flex cursor-pointer justify-center items-center gap-2 text-sm">
