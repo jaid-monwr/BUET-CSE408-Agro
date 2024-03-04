@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 
 const Payment = () => {
   const {
-    state: { price, items },
+    state: { price, items, orderId },
   } = useLocation();
   const [paymentMethod, setPaymentMethod] = useState("stripe");
 
@@ -79,7 +79,7 @@ const Payment = () => {
                 </div>
                 {paymentMethod === "stripe" && (
                   <div>
-                    <Stripe />
+                    <Stripe orderId={orderId} price={price} />
                   </div>
                 )}
                 {paymentMethod === "bkash" && (
@@ -111,11 +111,11 @@ const Payment = () => {
                   <h2 className="font-medium">Order Summary</h2>
                   <div className="flex justify-between items-center gap-2">
                     <span>Total {items} item(s) and shipping fee included</span>
-                    <span> {price}</span>
+                    <span>Tk {price}</span>
                   </div>
                   <div className="flex justify-between items-center gap-2 font-semibold">
                     <span>Total Amount</span>
-                    <span className="text-lg text-orange-500"> {price}</span>
+                    <span className="text-lg text-orange-500">Tk {price}</span>
                   </div>
                 </div>
               </div>

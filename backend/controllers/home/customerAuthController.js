@@ -71,6 +71,11 @@ class customerAuthController {
       console.log(error.message);
     }
   };
+
+  customer_logout = async (req, res) => {
+    res.clearCookie("customerToken", "", { expires: new Date(Date.now()) });
+    responseReturn(res, 200, { message: "Logout successful" });
+  };
 }
 
 module.exports = new customerAuthController();
