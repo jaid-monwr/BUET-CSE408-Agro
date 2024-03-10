@@ -9,7 +9,7 @@ const {
 } = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 const stripe = require("stripe")(
-
+  "sk_test_51OqKVuD8IDX6RvYgcJx62Szf3mHySHypUgHwMCRwwkQDTwpQVgAsufnNrJm9uiuEA7s2ZvwIbMBUtW3DkN997v9200FrkyFNma"
 );
 class paymentController {
   create_stripe_connect_account = async (req, res) => {

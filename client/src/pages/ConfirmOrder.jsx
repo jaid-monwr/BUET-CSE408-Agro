@@ -7,7 +7,7 @@ import error from "../assets/error.png";
 import success from "../assets/success.png";
 const load = async () => {
   return await loadStripe(
-
+    "pk_test_51OqKVuD8IDX6RvYgmPR7XotIckvgmPeBa2NkAjVfzM3SnCpMeKR4BVqSHit6kbL2MPE2NtwUcWDsNPmQFwbUZK9T00AE8ufugG"
   );
 };
 

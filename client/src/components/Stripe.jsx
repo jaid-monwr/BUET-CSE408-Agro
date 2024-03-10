@@ -7,7 +7,7 @@ import { useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(
-
+  "pk_test_51OqKVuD8IDX6RvYgmPR7XotIckvgmPeBa2NkAjVfzM3SnCpMeKR4BVqSHit6kbL2MPE2NtwUcWDsNPmQFwbUZK9T00AE8ufugG"
 );
 const Stripe = ({ price, orderId }) => {
   const [clientSecret, setClientSecret] = useState("");
