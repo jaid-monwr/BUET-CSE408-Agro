@@ -2,6 +2,9 @@
 #### This is an ecommerce project. This project focuses on the interaction between Farmers and WholeSellers. And our platform works as the middle man.
 
 
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/2.PNG)
+
+
 # Index
 
 - # [Overview](#overview)
@@ -14,8 +17,8 @@
 
 We Have implemented 3 modules in this project.  
 - Admin
-- Farmer/Seller
-- Client/WholeSeller 
+- Seller
+- Client 
 
 
 
@@ -33,7 +36,12 @@ The things that admin can do:
 
 It is the responsibility of the Admin to arrange these things properly. 
 
-## Farmer/Seller
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/12.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/13.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/14.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/15.PNG)
+
+## Seller
 Farmer/Seller must create an account in our platform to access the facilities that our platform provides. He must connect a Stripe account for future transactions. To set his sccount active, he requires approval from the admin. A Farmer can:
 
 1. Add Products to his shop
@@ -43,11 +51,14 @@ Farmer/Seller must create an account in our platform to access the facilities th
 5. Request For money Withdrawl
 
 
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/7.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/8.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/9.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/10.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/11.PNG)
 
-
-
-## Client/WholeSeller
-CLient/WholeSeller can create an account in our platform to get services provieded by our platform. A client can:
+## Client
+CLient can create an account in our platform to get services provieded by our platform. A client can:
 1. View Products
 2. Filter Products
 3. Rate Products
@@ -60,14 +71,21 @@ CLient/WholeSeller can create an account in our platform to get services provied
 10. Chat with Farmers/Sellers
 11. See status of placed orders
 
+
 A client can Filter products by Rating, Price, Category and Area. When a client attempts to place a order he must pay using "Stripe" to complete order. Then he can see the status of the order in the client dashboard. The Status of order is controlled by Admin and Seller. 
+
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/3.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/4.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/5.PNG)
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/6.PNG)
+
 
 ## [Stack]
 
 ![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/1-modified.PNG)
 
 
-## [Prep]
+## [Prepping command]
 
 ### Go to project directory
 
@@ -83,7 +101,7 @@ npm i
 cd ..
 ```
 
-## [Run]
+## [Run command]
 
 ```
 cd backend
@@ -97,4 +115,7 @@ npm start
 cd ..
 ```
 
+In conclusion, we extend our sincere gratitude to our supervisor, Hasebul. His guidance and support have been invaluable throughout this endeavor.
+
+Special Thanks to our supervisor [Hasebul Hasan Shawon](https://www.linkedin.com/in/hasebul-hasan-shawon-a618091aa?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BAt2zCGa4QEu27LiM%2F27GaA%3D%3D).
 
