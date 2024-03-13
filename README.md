@@ -1,7 +1,13 @@
 # AGRO 
 #### This is an ecommerce project. This project focuses on the interaction between Farmers and WholeSellers. And our platform works as the middle man.
 
-
+## Contributors
+[@jaidmonwar](https://github.com/jaid-monwr),
+[@tonmoyhasan](https://github.com/TonmoyDaFulkopi),
+[@sanaullah](https://github.com/Excalib9r)
+\
+\
+\
 ![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/2.PNG)
 
 
