@@ -16,6 +16,7 @@ The things that admin can do:
 4. Activate any Seller account
 5. Deactivate any Seller account
 6. Approve transactions requests
+7. Approve any order and Update order Status
 
 It is the responsibility of the Admin to arrange these things properly. 
 
