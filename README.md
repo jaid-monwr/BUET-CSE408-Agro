@@ -1,15 +1,15 @@
 # AGRO 
 #### This is an ecommerce project. This project focuses on the interaction between Farmers and WholeSellers. And our platform works as the middle man.
 
-[Jump to Section 2](#section-2)
 
+ [Solution](https://github.com/jaid-monwr/BUET-CSE408-Agro/edit/main/README.md#this-is-section2)
 
 We Have implemented 3 modules in this project.  
 - Admin
 - Farmer/Seller
 - Client/WholeSeller 
 
-## Section 2 {#section-2}
+## This is Section2
 
 
 ## Admin
