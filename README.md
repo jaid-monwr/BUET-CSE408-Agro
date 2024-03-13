@@ -1,7 +1,10 @@
 # AGRO 
 #### This is an ecommerce project. This project focuses on the interaction between Farmers and WholeSellers. And our platform works as the middle man.
 
-[Jump to Section 2](#section-2)
+
+
+
+# [Jump to Section 2](#my-section)
 
 
 We Have implemented 3 modules in this project.  
@@ -38,7 +41,7 @@ Farmer/Seller must create an account in our platform to access the facilities th
 
 
 
-## My Section {#my-section}
+## [My Section]
 
 
 ## Client/WholeSeller
