@@ -6,7 +6,9 @@
 
 - # [Overview](#overview)
 - # [Stack](#stack)
-- # [Running on Local Machine](#run)
+- # [Prepping on Local Machine](#prep)
+- # [Running](#run)
+
 
 ## [Overview]
 
@@ -65,7 +67,7 @@ A client can Filter products by Rating, Price, Category and Area. When a client 
 ![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/1-modified.PNG)
 
 
-## [Run]
+## [Prep]
 
 ### Go to project directory
 
@@ -80,4 +82,19 @@ cd dashboard
 npm i
 cd ..
 ```
+
+## [Run]
+
+```
+cd backend
+npm run server
+cd ..
+cd client
+npm start
+cd ..
+cd dashboard
+npm start
+cd ..
+```
+
 
