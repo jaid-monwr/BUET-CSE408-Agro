@@ -1,15 +1,16 @@
 # AGRO 
 #### This is an ecommerce project. This project focuses on the interaction between Farmers and WholeSellers. And our platform works as the middle man.
 
+[Jump to Section 2](#section-2)
 
- [Solution](https://github.com/jaid-monwr/BUET-CSE408-Agro/edit/main/README.md#this-is-section2)
 
 We Have implemented 3 modules in this project.  
 - Admin
 - Farmer/Seller
 - Client/WholeSeller 
 
-## This is Section2
+
+
 
 
 ## Admin
@@ -34,6 +35,11 @@ Farmer/Seller must create an account in our platform to access the facilities th
 3. Chat with Admin
 4. Chat with customers
 5. Request For money Withdrawl
+
+
+
+## My Section {#my-section}
+
 
 ## Client/WholeSeller
 CLient/WholeSeller can create an account in our platform to get services provieded by our platform. A client can:
