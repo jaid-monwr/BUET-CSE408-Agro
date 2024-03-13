@@ -2,17 +2,18 @@
 #### This is an ecommerce project. This project focuses on the interaction between Farmers and WholeSellers. And our platform works as the middle man.
 
 
+# Index
 
+- # [Overview](#overview)
+- # [Stack](#stack)
+- # [Running on Local Machine](#run)
 
-# [Jump to Section 2](#my-section)
-
+## [Overview]
 
 We Have implemented 3 modules in this project.  
 - Admin
 - Farmer/Seller
 - Client/WholeSeller 
-
-
 
 
 
@@ -41,7 +42,6 @@ Farmer/Seller must create an account in our platform to access the facilities th
 
 
 
-## [My Section]
 
 
 ## Client/WholeSeller
@@ -59,3 +59,25 @@ CLient/WholeSeller can create an account in our platform to get services provied
 11. See status of placed orders
 
 A client can Filter products by Rating, Price, Category and Area. When a client attempts to place a order he must pay using "Stripe" to complete order. Then he can see the status of the order in the client dashboard. The Status of order is controlled by Admin and Seller. 
+
+## [Stack]
+
+![Alt Text](https://github.com/jaid-monwr/BUET-CSE408-Agro/blob/main/pictures/1-modified.PNG)
+
+
+## [Run]
+
+### Go to project directory
+
+```
+cd backend
+npm i
+cd ..
+cd client
+npm i
+cd ..
+cd dashboard
+npm i
+cd ..
+```
+
