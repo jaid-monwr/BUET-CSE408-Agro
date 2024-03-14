@@ -6,10 +6,10 @@
 [@tonmoyhasan](https://github.com/TonmoyDaFulkopi),
 [@sanaullah](https://github.com/Excalib9r)
 \
-\
-## Project Demonstration
 
-<!-- ![Project Demonstration](https://www.youtube.com/watch?v=cgQWqhZCTAM) -->
+## Project Demonstration Video (Please click on the image below to be redirected to Youtube)
+
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/cgQWqhZCTAM/0.jpg)](https://www.youtube.com/watch?v=cgQWqhZCTAM)
 
 
