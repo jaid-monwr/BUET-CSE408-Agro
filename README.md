@@ -7,10 +7,10 @@
 [@sanaullah](https://github.com/Excalib9r)
 \
 \
-\
 ## Project Demonstration
 
-![Project Demonstration](https://www.youtube.com/watch?v=cgQWqhZCTAM)
+<!-- ![Project Demonstration](https://www.youtube.com/watch?v=cgQWqhZCTAM) -->
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/cgQWqhZCTAM/0.jpg)](https://www.youtube.com/watch?v=cgQWqhZCTAM)
 
 
 # Index
@@ -123,7 +123,7 @@ npm start
 cd ..
 ```
 
-In conclusion, we extend our sincere gratitude to our supervisor, Hasebul. His guidance and support have been invaluable throughout this endeavor.
+In conclusion, we extend our sincere gratitude to our supervisor, Hasebul Sir. His guidance and support have been invaluable throughout this endeavor.
 
 Special Thanks to our supervisor [Hasebul Hasan Shawon](https://www.linkedin.com/in/hasebul-hasan-shawon-a618091aa?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BAt2zCGa4QEu27LiM%2F27GaA%3D%3D).
 
