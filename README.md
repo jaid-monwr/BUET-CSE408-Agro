@@ -5,7 +5,6 @@
 [@jaidmonwar](https://github.com/jaid-monwr),
 [@tonmoyhasan](https://github.com/TonmoyDaFulkopi),
 [@sanaullah](https://github.com/Excalib9r)
-\
 
 ## Project Demonstration Video (Please click on the image below to be redirected to Youtube)
 
